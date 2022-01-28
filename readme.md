@@ -16,4 +16,13 @@ git commit -m '変更内容'
 git push -u origin feature/xxxx
 ```
 
+masterに移動
+```
+git checkout master
+```
+
+プルリク・マージ後、masterの更新を取得
+```
+git fetch
+```
 
