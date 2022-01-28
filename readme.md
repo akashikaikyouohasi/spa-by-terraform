@@ -16,9 +16,11 @@ git commit -m '変更内容'
 git push -u origin feature/xxxx
 ```
 
-masterに移動
+プルリク
+
+mainに移動
 ```
-git checkout master
+git checkout main
 ```
 
 プルリク・マージ後、masterの更新を取得
