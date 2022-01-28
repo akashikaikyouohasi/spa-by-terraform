@@ -16,6 +16,8 @@ git commit -m '変更内容'
 git push -u origin feature/xxxx
 ```
 
+プルリク
+
 mainに移動
 ```
 git checkout main
