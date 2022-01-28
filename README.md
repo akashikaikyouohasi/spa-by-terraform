@@ -41,7 +41,7 @@ git branch -a
 
 不要なローカルブランチ削除
 ```
-it branch -d xxxx
+git branch -d xxxx
 ```
 
 既に削除されたリモートブランチをローカルに適用
