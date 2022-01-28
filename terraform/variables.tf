@@ -1,7 +1,10 @@
 
 # local変数
 locals {
-  # S3の各バケットに設定するユニークな名前
+  /* 
+  S3の各バケットに設定するユニークな名前
+  ※各自で要調整  
+  */
   bucket_name = {
     # SPA配置用バケット
     single_page_application = "dev-react-tutorial-20220129"
