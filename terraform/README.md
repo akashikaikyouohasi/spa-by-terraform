@@ -7,6 +7,9 @@ Terraformは個別にインストールしてくださぁ
 $ terraform init
 ```
 
+## 環境変数の各自調整
+variables.tfの中身を各自の環境に合わせること
+
 ## バリデーションチェック
 ```
 $ terraform validate
