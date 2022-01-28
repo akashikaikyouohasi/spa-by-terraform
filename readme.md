@@ -32,8 +32,19 @@ git pull
 
 一番上に戻る
 
-## 状態確認コマンド
+## その他のコマンド
+状態確認
 ```
 git status
-git branch a
+git branch -a
+```
+
+不要なローカルブランチ削除
+```
+it branch -d xxxx
+```
+
+既に削除されたリモートブランチをローカルに適用
+```
+git fetch --prune
 ```
