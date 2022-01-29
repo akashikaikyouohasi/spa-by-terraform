@@ -6,6 +6,21 @@
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
 
+## 利用方法 
+
+### 環境変数の設定
+### GitHub
+GitHubのRepository secretsにOIDC認証で利用できるIAMロールのARNを設定すること
+　例　"AWS_ROLE_ARN": "arn:aws:iam::{アカウントID}:role/{ロール名}"
+
+### ローカルでの実行方法
+```
+$ cd terraform
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ
 
