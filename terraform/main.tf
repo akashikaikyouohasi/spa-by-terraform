@@ -9,6 +9,13 @@ terraform {
       version = "~>3.67"
     }
   }
+
+  # tfstate(状態管理用ファイル)をS3に保存する設定
+  backend "s3" {
+    bucket = "tfstate-terraform-20211204"
+    key    = "test-github/terraform.tfstate"
+    region = "ap-northeast-1"
+  }
 }
 
 # 明示的にAWSプロバイダを定義（暗黙的に理解してくれる）
