@@ -1,6 +1,10 @@
 name: terraform apply by OIDC
 
-on: push
+on: 
+  pull_request:
+    branches:
+      - main
+    types: [closed]
 
 permissions:
   id-token: write
@@ -19,4 +23,5 @@ jobs:
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ap-northeast-1
+
 
