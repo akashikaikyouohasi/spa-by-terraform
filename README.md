@@ -1,5 +1,13 @@
-# GitHubの使い方
-## gitコマンドでの一連の流れ
+# SPAをAWSに構築するレポジトリ
+## 構成図
+![](images/SPA.drawio.svg)
+
+## ディレクトリの説明
+- terraform: Terraformのリソース定義ファイル群
+- images: 画像。主にAWS構成のdraw.ioの図
+
+## GitHubの使い方
+### gitコマンドでの一連の流れ
 
 ブランチ作成
 ```
@@ -32,7 +40,7 @@ git pull
 
 一番上に戻る
 
-## タグ付け
+### タグ付け
 
 タグ作成
 ```
@@ -44,7 +52,7 @@ git tag "タグ名" -m "メッセージ"
 git push origin --tags
 ```
 
-## その他のコマンド
+### その他のコマンド
 状態確認
 ```
 git status
