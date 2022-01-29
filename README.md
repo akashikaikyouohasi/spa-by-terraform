@@ -1,4 +1,4 @@
-#SPAをAWSに構築するレポジトリ
+# SPAをAWSに構築するレポジトリ
 ## 構成図
 ![](images/SPA.drawio.svg)
 
@@ -9,7 +9,7 @@
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ
 
-#### ブランチ作成
+ブランチ作成
 ```
 git checkout -b feature/xxxx
 ```
