@@ -1,6 +1,6 @@
 #SPAをAWSに構築するレポジトリ
 ## 構成図
-![]{images/SPA.drawio.svg}
+![](images/SPA.drawio.svg)
 
 ## ディレクトリの説明
 - terraform: Terraformのリソース定義ファイル群
