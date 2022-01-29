@@ -1,0 +1,22 @@
+name: terraform apply by OIDC
+
+on: push
+
+permissions:
+  id-token: write
+  contents: read # actions/checkout のために必要
+
+jobs:
+  get-caller-identity:
+    name: OIDC test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials from test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ap-northeast-1
+
