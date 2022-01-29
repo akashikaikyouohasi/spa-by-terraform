@@ -7,6 +7,21 @@ Terraformは個別にインストールしてくださぁ
 $ terraform init
 ```
 
+## Terrformの状態変数の管理S3バケット設定
+GitHub ActionsでTerraformをapplyすると、状態を表すtstateファイルがなくなってしまう。
+
+そこで、状態ファイルをS3で管理するようにする。
+
+適当なS3バケットは作成されていることを前提に、以下に設定すること
+
+```main.tf
+backend "s3" {
+    bucket = "{Terraformの状態管理用のバケットの名前}"
+    key = "{出力ディレクトリパス}/terraform.tfstate"
+    region = "ap-northeast-1"
+  }
+```
+
 ## 環境変数の各自調整
 variables.tfの中身を各自の環境に合わせること
 
