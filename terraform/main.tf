@@ -27,6 +27,7 @@ provider "aws" {
   default_tags {
     tags = {
       env = "dev"
+      project_name = "spa-by-terraform"
     }
   }
 }
