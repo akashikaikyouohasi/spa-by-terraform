@@ -12,9 +12,18 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 ## 利用方法 
 
 ### 環境変数の設定
+
+今はない
+
 ### GitHub
 GitHubのRepository secretsにOIDC認証で利用できるIAMロールのARNを設定すること
 　例　"AWS_ROLE_ARN": "arn:aws:iam::{アカウントID}:role/{ロール名}"
+
+#### GitHub Actionsの設定方法
+ブログ参照：[GitHub ActionsをOIDCでAWS認証してTerraformを実行する](https://anikitech.com/github-actions-terraform-by-oidc/)
+
+セキュリティを鑑み、OIDCで認証しています。
+
 
 ### ローカルでの実行方法
 ```
@@ -33,18 +42,22 @@ Terraformの状態管理をS3で行うため、Terraform用のS3バケットを�
 - 暗号化を有効
 - ACLはプライベート
 
-### GitHub Actionsの設定方法
-ブログ参照：[GitHub ActionsをOIDCでAWS認証してTerraformを実行する](https://anikitech.com/github-actions-terraform-by-oidc/)
-
-セキュリティを鑑み、OIDCで認証しています。
-
 ### GitHub Actionsの実行タイミング
-
 #### 確認
 Pull Requestを作成したタイミングで`terraform plan`したいなぁ（予定）
 
 #### 実行
 Pull RequestをMergeしたタイミングで`terraform apply`してます。
+
+## 機能
+現段階はオリジンコンテンツ用のS3バケットにHTMLだけのindex.htmlを配置して、CloudFront経由でカスタムドメインで配布しているだけ。
+
+### 今後の追加機能
+- データを格納するDyanamoDB
+- API GatewayとDynamoDBを操作するLambda
+- API GatewayをAuth0での認証し、Custom Authorizer
+- セキュリティとして、WAFとShieldの設定
+- 運用監視として、CloudWatchにメトリクス設定。主に課金に関わる箇所を見える化する
 
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ
