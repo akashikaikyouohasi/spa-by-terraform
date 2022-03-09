@@ -5,6 +5,7 @@
 ## ディレクトリの説明
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
+- origin_contents: SPAのオリジンコンテンツ
 
 ### draw.ioの図について
 SVGファイルなので、Draw.ioで読み込んで編集が可能です
@@ -12,17 +13,16 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 ## 利用方法 
 
 ### 環境変数の設定
-### GitHub
+
+今はない
+
+### GitHub Actionsの設定方法
 GitHubのRepository secretsにOIDC認証で利用できるIAMロールのARNを設定すること
 　例　"AWS_ROLE_ARN": "arn:aws:iam::{アカウントID}:role/{ロール名}"
 
-### ローカルでの実行方法
-```
-$ cd terraform
-$ terraform init
-$ terraform plan
-$ terraform apply
-```
+ブログ参照：[GitHub ActionsをOIDCでAWS認証してTerraformを実行する](https://anikitech.com/github-actions-terraform-by-oidc/)
+
+セキュリティを鑑み、OIDCで認証しています。
 
 ### GitHub Actionsでの利用準備
 Terraformの状態管理をS3で行うため、Terraform用のS3バケットを作成しておくこと
@@ -33,6 +33,32 @@ Terraformの状態管理をS3で行うため、Terraform用のS3バケットを�
 - 暗号化を有効
 - ACLはプライベート
 
+### ローカルでの実行方法
+`variables.tf`を各環境毎に調整後、以下のコマンドを実施。
+
+```
+$ cd terraform
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
+
+### GitHub Actionsの実行タイミング
+#### 確認
+Pull Requestを作成したタイミングで`terraform plan`したいなぁ（予定）
+
+#### 実行
+Pull RequestをMergeしたタイミングで`terraform apply`してます。
+
+## 機能
+現段階はオリジンコンテンツ用のS3バケットにHTMLだけのindex.htmlを配置して、CloudFront経由でカスタムドメインで配布しているだけ。
+
+### 今後の追加機能
+- データを格納するDyanamoDB
+- API GatewayとDynamoDBを操作するLambda
+- API GatewayをAuth0での認証し、Custom Authorizer
+- セキュリティとして、WAFとShieldの設定
+- 運用監視として、CloudWatchにメトリクス設定。主に課金に関わる箇所を見える化する
 
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ

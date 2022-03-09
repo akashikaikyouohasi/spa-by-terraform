@@ -13,5 +13,13 @@ locals {
     # CloudFrontのアクセスログ用バケット
     accesslog_cloudfront = "dev-cf-accesslog-react-tutorial-20220129"
   }
+
+  # rootドメイン名
+  domain_name  = "build-automation.de"
+  # CloudFront用のドメイン名
+  cloudfront_domain_name = "udemy.build-automation.de"
+  # CloudFront用のドメインの証明書ARN（アマゾンリソースネーム）
+  cloudfront_domain_name_acm_arn = "arn:aws:acm:us-east-1:206863353204:certificate/77304815-b814-42f9-875f-282bebc09514"
+  
 }
 
