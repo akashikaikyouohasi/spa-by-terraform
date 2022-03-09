@@ -33,6 +33,18 @@ Terraformの状態管理をS3で行うため、Terraform用のS3バケットを�
 - 暗号化を有効
 - ACLはプライベート
 
+### GitHub Actionsの設定方法
+ブログ参照：[GitHub ActionsをOIDCでAWS認証してTerraformを実行する](https://anikitech.com/github-actions-terraform-by-oidc/)
+
+セキュリティを鑑み、OIDCで認証しています。
+
+### GitHub Actionsの実行タイミング
+
+#### 確認
+Pull Requestを作成したタイミングで`terraform plan`したいなぁ（予定）
+
+#### 実行
+Pull RequestをMergeしたタイミングで`terraform apply`してます。
 
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ
