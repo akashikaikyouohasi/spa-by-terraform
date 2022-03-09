@@ -5,6 +5,7 @@
 ## ディレクトリの説明
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
+- origin_contents: SPAのオリジンコンテンツ
 
 ### draw.ioの図について
 SVGファイルなので、Draw.ioで読み込んで編集が可能です
@@ -15,23 +16,13 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 
 今はない
 
-### GitHub
+### GitHub Actionsの設定方法
 GitHubのRepository secretsにOIDC認証で利用できるIAMロールのARNを設定すること
 　例　"AWS_ROLE_ARN": "arn:aws:iam::{アカウントID}:role/{ロール名}"
 
-#### GitHub Actionsの設定方法
 ブログ参照：[GitHub ActionsをOIDCでAWS認証してTerraformを実行する](https://anikitech.com/github-actions-terraform-by-oidc/)
 
 セキュリティを鑑み、OIDCで認証しています。
-
-
-### ローカルでの実行方法
-```
-$ cd terraform
-$ terraform init
-$ terraform plan
-$ terraform apply
-```
 
 ### GitHub Actionsでの利用準備
 Terraformの状態管理をS3で行うため、Terraform用のS3バケットを作成しておくこと
@@ -41,6 +32,16 @@ Terraformの状態管理をS3で行うため、Terraform用のS3バケットを�
 - バージョニングの有効化
 - 暗号化を有効
 - ACLはプライベート
+
+### ローカルでの実行方法
+`variables.tf`を各環境毎に調整後、以下のコマンドを実施。
+
+```
+$ cd terraform
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
 
 ### GitHub Actionsの実行タイミング
 #### 確認
