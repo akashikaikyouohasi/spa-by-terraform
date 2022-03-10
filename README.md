@@ -6,6 +6,9 @@
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
 - origin_contents: SPAのオリジンコンテンツ
+- docs: 本アプリのドキュメント
+    - 料金
+    - 仕様など（現時点では存在せず）
 
 ### draw.ioの図について
 SVGファイルなので、Draw.ioで読み込んで編集が可能です
