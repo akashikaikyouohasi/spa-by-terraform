@@ -23,3 +23,22 @@ resource "aws_route53_record" "cloudfront_alias" {
     evaluate_target_health = true
   }
 }
+
+### API Gateway用
+resource "aws_route53_record" "api_gateway_alias" {
+  # ゾーンID
+  zone_id = data.aws_route53_zone.my_domain.id
+
+  # レコード名
+  name = aws_api_gateway_domain_name.api_domain.domain_name
+  # レコードタイプ
+  type = "A"
+  
+  # トラフィックのルーティング先をエイリアス
+  alias {
+    name = aws_api_gateway_domain_name.api_domain.cloudfront_domain_name 
+    zone_id = aws_api_gateway_domain_name.api_domain.cloudfront_zone_id 
+    # ターゲットのヘルスを評価
+    evaluate_target_health = true
+  }
+}

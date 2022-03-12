@@ -39,3 +39,13 @@ variable "dynamodb" {
     "dynamodb_primary_key" = "id"
   }
 }
+
+### API Gatewayの設定 ###
+variable "api_gateway" {
+  default = {
+    # API Gateway用のドメイン名
+    "api_domain_name" = "testapi.build-automation.de"
+    # API Gateway用のドメインの証明書のARN（アマゾンリソースネーム）
+    "api_domain_name_acm_arn" = "arn:aws:acm:us-east-1:206863353204:certificate/728f6af2-7c61-43b3-aefe-a50a8fae8f4f"
+  }
+}
