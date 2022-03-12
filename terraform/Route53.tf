@@ -2,7 +2,7 @@
 ### Route53 レコード作成
 #################
 data "aws_route53_zone" "my_domain" {
-  name = local.domain_name
+  name = var.domain_name
 }
 
 ### CloudFront用
@@ -11,7 +11,7 @@ resource "aws_route53_record" "cloudfront_alias" {
   zone_id = data.aws_route53_zone.my_domain.id
 
   # レコード名
-  name = local.cloudfront_domain_name
+  name = var.cloudfront_domain_name
   # レコードタイプ
   type = "A"
 
