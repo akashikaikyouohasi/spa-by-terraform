@@ -130,7 +130,10 @@ resource "aws_api_gateway_deployment" "deploy" {
   depends_on = [aws_api_gateway_integration.api_gw_integration]
 }
 
+# デプロイ
 resource "aws_api_gateway_stage" "deploy" {
+  # APIをデプロイして外部に公開します。
+  
   # 
   deployment_id = aws_api_gateway_deployment.deploy.id
   # REST API
