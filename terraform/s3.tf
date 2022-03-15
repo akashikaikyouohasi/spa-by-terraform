@@ -4,7 +4,7 @@
 ### SPA用のバケット###
 resource "aws_s3_bucket" "single-page-application" {
   # S3のバケット名
-  bucket = local.bucket_name.single_page_application
+  bucket = var.bucket_name.single_page_application
   # アクセス管理
   acl = "private"
   # バージョニングの有効化
@@ -39,7 +39,7 @@ resource "aws_s3_bucket_public_access_block" "single-page-application" {
 ### SPAバケットのアクセスログ用のバケット###
 resource "aws_s3_bucket" "accesslog-single-page-application" {
   # S3のバケット名
-  bucket = local.bucket_name.accesslog_single_page_application
+  bucket = var.bucket_name.accesslog_single_page_application
   # アクセス管理
   # log-delivery-writeは、S3ログ配信グループにオブジェクト書き込み・バケットACL読み込みを許可する
   acl = "log-delivery-write"
@@ -67,7 +67,7 @@ data "aws_canonical_user_id" "current_user" {}
 
 resource "aws_s3_bucket" "cloudfront-accesslog" {
   # S3のバケット名
-  bucket = local.bucket_name.accesslog_cloudfront
+  bucket = var.bucket_name.accesslog_cloudfront
   # アクセス管理 ACL
   # バケット所有者にFULL_CONTROLのアクセス権限を付与
   grant {

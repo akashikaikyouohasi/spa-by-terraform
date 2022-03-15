@@ -3,7 +3,7 @@
 # -----------------------------------
 resource "aws_cloudfront_origin_access_identity" "oai" {
 	# S3にアクセスできるように、CloudFront用のオリジンアクセスアイデンティティ(OAI)を作成
-	comment = "origin access identity for s3: ${local.bucket_name.single_page_application}"
+	comment = "origin access identity for s3: ${var.bucket_name.single_page_application}"
 }
 
 data "aws_iam_policy_document" "cloudfront_to_s3_policy" {
@@ -88,12 +88,12 @@ resource  "aws_cloudfront_distribution" "spa-www" {
 
 	# 代替ドメイン名(CNAME) - オプション
  	# build-automation.de　をドメインとして取得している
-	aliases 	= [local.cloudfront_domain_name]
+	aliases 	= [var.cloudfront_domain_name]
 
 	# カスタムSSL証明書 - オプション
 	viewer_certificate {
 		# バージニア北部リージョンで作成したAWS Certificate Manager(ACM)の証明書のarnを指定
-		acm_certificate_arn = local.cloudfront_domain_name_acm_arn
+		acm_certificate_arn = var.cloudfront_domain_name_acm_arn
 		# CloudFrontのデフォルトの証明書を利用するかどうか
 		cloudfront_default_certificate	= false
 		# acm_certificate_arnを設定する場合は必須

@@ -1,6 +1,8 @@
 # Terrafromの使い方
 ## 初期化
-Terraformは個別にインストールしてくださぁ
+Terraformは個別にインストールしてください
+
+[Cloud9にTerraform環境を作ってみる](https://anikitech.com/cloud9-terraform/)を書いたので、参考にしてCloud9に環境を簡単に作成できます！
 
 初期化
 ```
@@ -10,7 +12,7 @@ $ terraform init
 ## Terrformの状態変数の管理S3バケット設定
 GitHub ActionsでTerraformをapplyすると、状態を表すtstateファイルがなくなってしまう。
 
-そこで、状態ファイルをS3で管理するようにする。
+そこで、状態ファイルをS3で管理するようにします。
 
 適当なS3バケットは作成されていることを前提に、以下に設定すること
 
