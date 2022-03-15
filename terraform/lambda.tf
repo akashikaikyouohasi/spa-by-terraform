@@ -21,7 +21,7 @@ data "archive_file" "lambda_zip" {
   type = "zip"
   # 入力・出力
   source_dir = "../lambda/for_dynamodb"
-  output_path = "function.zip"
+  output_path = "../lambda/for_dynamodb/function.zip"
 }
 
 ### labmda関数 実行用ロール
