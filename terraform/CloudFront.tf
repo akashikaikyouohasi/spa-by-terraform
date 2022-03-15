@@ -130,5 +130,5 @@ resource  "aws_cloudfront_distribution" "spa-www" {
 	is_ipv6_enabled	= true
 
     # CloudFront削除時、破棄されず無効にする。Terraform固有の機能。削除するのに時間がかかるから？
-    retain_on_delete = true
+    #retain_on_delete = true
 }
