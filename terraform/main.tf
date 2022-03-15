@@ -31,3 +31,17 @@ provider "aws" {
     }
   }
 }
+
+# グローバルリージョンにデプロイする必要があるもの用：Multiple Providers機能
+provider "aws" {
+  alias = "virginia"
+  region  = "us-east-1"
+
+  # 作成する全リソースに付与するタグ設定
+  default_tags {
+    tags = {
+      env = "dev"
+      project_name = "spa-by-terraform"
+    }
+  }
+}
