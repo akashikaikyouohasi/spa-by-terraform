@@ -1,0 +1,20 @@
+// tsconfig.jsonはTypeScriptのコンパイラが//をコメントとして無視してくれる！！！便利！！
+{
+    "compilerOptions": {
+        "sourceMap": true,//ソースマップを作成
+        "target": "ES2015",//コンパイルターゲット
+        "lib": ["DOM", "ESNext"],//型定義の追加
+        "module": "ES2015",//出力されるモジュール方式。webpackならES2015でいい
+        "esModuleInterop": true,//moduleのインポート方法を統一
+        "strict": true,//厳格なチェックを行う
+        "forceConsistentCasingInFileNames": true,//ファイル名の大文字と小文字を区別する
+        "noFallthroughCasesInSwitch": true,//Switch内でreturnかbreakを強制
+        "noImplicitReturns": true,//関数内の値の返却を強制
+        "noUnusedLocals": true,//使用されていないローカル変数があるとエラー
+        "noUnusedParameters": true,//使用していない関数のパラメータがあるとエラー
+        "moduleResolution": "node", //
+        "jsx": "react-jsx", //TypeScriptがReactのシンタックスを理解できるようになる
+        "allowJs": true, //.jsと.jsxをTypeScriptで扱うために必要
+        "outDir": "dist"// 出力先を明示しないといけないらしい
+    }
+}
