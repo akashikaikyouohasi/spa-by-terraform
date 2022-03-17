@@ -6,11 +6,13 @@
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
 - origin_contents: SPAのオリジンコンテンツ
+    - react
 - docs: 本アプリのドキュメント
     - 料金
     - 仕様など（現時点では存在せず）
     - 使い方、デプロイ方法
 - test_tool: AWSリソースなどのテスト方法ドキュメントと、テスト用のツール
+- react: SPAのフロントエンドを作るReactのソース。*origin_contents*ディレクトリにビルドしたものを出力します。
 
 ### draw.ioの図について
 SVGファイルなので、Draw.ioで読み込んで編集が可能です
@@ -39,9 +41,13 @@ $ cd terraform
 $ terraform init
 $ terraform plan
 $ terraform apply
+
+$ cd ../react
+$ npm run build
 ```
 
 やりたいのであれば、`test_tool`ディレクトリを参照して、テストを試してみてください。
+
 
 
 ## GitHub Actionsから実行する方法

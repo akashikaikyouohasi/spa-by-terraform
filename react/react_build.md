@@ -64,7 +64,7 @@ npm install @types/{パッケージ名}
 
 ## 実行コマンド一覧
 ### build
-`npm run build`で、distにBuildしてくれる。
+`npm run build`で、*../origin_contents*にBuildしてくれる。
 
 ### dev
 `npm run dev`でファイルを監視して、自動でビルドを実行させる。
@@ -72,6 +72,6 @@ npm install @types/{パッケージ名}
 基本的には起動しっぱなして、次のserveと同時に実行して画面にすぐ反映されるようにする。
 
 ### serve
-`npm run serve`でlocalhostサーバが起動するので、アクセスして確認可能。
+`npm run serve`で*localhost:3000*サーバが起動するので、アクセスして確認可能。
 
 

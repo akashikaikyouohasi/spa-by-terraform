@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "webpack -w",
     "build": "webpack",
-    "serve": "serve ./ -p 3000"
+    "serve": "serve ../origin_contents -p 3000"
   },
   "keywords": [],
   "author": "",

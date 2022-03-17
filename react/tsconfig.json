@@ -15,6 +15,6 @@
         "moduleResolution": "node", //
         "jsx": "react-jsx", //TypeScriptがReactのシンタックスを理解できるようになる
         "allowJs": true, //.jsと.jsxをTypeScriptで扱うために必要
-        "outDir": "dist"// 出力先を明示しないといけないらしい
+        "outDir": "../origin_contents"// 出力先を明示しないといけないらしい
     }
 }

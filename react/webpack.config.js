@@ -16,7 +16,7 @@ module.exports = {
     // 出力設定
     output: {
         filename: 'index.js',
-        path: resolve(__dirname, 'dist'),
+        path: resolve(__dirname, '../origin_contents'),
     },
     // モジュールの解決方法
     resolve: {
