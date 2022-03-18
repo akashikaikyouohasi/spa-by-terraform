@@ -6,7 +6,6 @@
 - terraform: Terraformのリソース定義ファイル群
 - images: 画像。主にAWS構成のdraw.ioの図
 - origin_contents: SPAのオリジンコンテンツ
-    - react
 - docs: 本アプリのドキュメント
     - 料金
     - 仕様など（現時点では存在せず）
@@ -48,7 +47,22 @@ $ npm run build
 
 やりたいのであれば、`test_tool`ディレクトリを参照して、テストを試してみてください。
 
+### ローカルで更新したLabmda/origin_contentsをデプロイする方法
+0から構築すると、lambdaの関数とSPAの*index.html*はアップロードしてくれますが、更新して**terraform apply**してもコードは更新してくれません。
 
+そのため、手動でデプロイしてください。GitHub Actionsでは自動でデプロイするようにします。
+
+- Lambda
+```
+# aws lambda update-function-code --function-name {Lambdaの関数名} --zip-file fileb://lambda/for_dynamodb/{zipファイル名}
+(実行例)# aws lambda update-function-code --function-name DynamodbforSPA --zip-file fileb://lambda/for_dynamodb/function.zip
+```
+
+- SPAのS3
+```
+# cd origin_contents
+# aws s3 sync . s3://dev-react-tutorial-20220129/
+```
 
 ## GitHub Actionsから実行する方法
 CI/CDパイプラインを構築したいため、基本的にはGitHub Actionsからデプロイを実行することを想定しています。
