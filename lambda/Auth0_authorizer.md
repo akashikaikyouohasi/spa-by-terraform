@@ -61,6 +61,6 @@ Lambda関数用にビルドして**custom-authorizer.zip**を作成します。�
 Lambda関数をTerraformで作成します。
 
 作成したLambda関数のテストタブで*新しいイベント*を作成します。
-内容は、上で作成した*event.json*です。（時間が経つと*access_token*の有効期限が切れるので、適宜更新してください。）
+内容は上記で作成した*event.json*です。（時間が経つと*access_token*の有効期限が切れるので、適宜更新してください。）
 
-
+テストを実行して、*result:succeeded*になることを確認します。

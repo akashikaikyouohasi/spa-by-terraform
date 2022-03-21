@@ -43,20 +43,23 @@ $ terraform apply
 
 $ cd ../react
 $ npm run build
+$ cd ../lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master
+$ npm install
+$ npm run bundle
 ```
 
 やりたいのであれば、`test_tool`ディレクトリを参照して、テストを試してみてください。
 
 ### ローカルで更新したLabmda/origin_contentsをデプロイする方法
-0から構築すると、lambdaの関数とSPAの*index.html*はアップロードしてくれますが、更新して**terraform apply**してもコードは更新してくれません。
+0から構築したタイミングではlambdaの関数とSPAの*index.html*はアップロードしてくれますが、後から更新して**terraform apply**してもコードは更新してくれません。
 
-そのため、手動でデプロイしてください。GitHub Actionsでは自動でデプロイするようにします。
+LambdaやSPAのソースを更新したい場合は手動でデプロイしてください。GitHub Actionsでは自動でデプロイするようにします。
 
 - Lambda
 ```
 # aws lambda update-function-code --function-name {Lambdaの関数名} --zip-file fileb://lambda/for_dynamodb/{zipファイル名}
 (実行例1)# aws lambda update-function-code --function-name DynamodbforSPA --zip-file fileb://lambda/for_dynamodb/function.zip
-(実行例1)# aws lambda update-function-code --function-name SPAforLambdaAuthorizer --zip-file fileb://lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master/custom-authorizer.zip
+(実行例2)# aws lambda update-function-code --function-name SPAforLambdaAuthorizer --zip-file fileb://lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master/custom-authorizer.zip
 ```
 
 - SPAのS3
@@ -64,7 +67,7 @@ $ npm run build
 # cd origin_contents
 # aws s3 sync . s3://dev-react-tutorial-20220129/
 ```
-CloudFrontのキャッシュが残っているのですぐには更新されません
+なお、CloudFrontのキャッシュが残っているのですぐには更新されないため、以下のコマンドも実行してください。
 
 - [CloudFrontのキャッシュ削除](https://qiita.com/yamamoto_y/items/cddba970ba0785b98461)
 ```
