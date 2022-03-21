@@ -55,7 +55,8 @@ $ npm run build
 - Lambda
 ```
 # aws lambda update-function-code --function-name {Lambdaの関数名} --zip-file fileb://lambda/for_dynamodb/{zipファイル名}
-(実行例)# aws lambda update-function-code --function-name DynamodbforSPA --zip-file fileb://lambda/for_dynamodb/function.zip
+(実行例1)# aws lambda update-function-code --function-name DynamodbforSPA --zip-file fileb://lambda/for_dynamodb/function.zip
+(実行例1)# aws lambda update-function-code --function-name SPAforLambdaAuthorizer --zip-file fileb://lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master/custom-authorizer.zip
 ```
 
 - SPAのS3
@@ -63,6 +64,14 @@ $ npm run build
 # cd origin_contents
 # aws s3 sync . s3://dev-react-tutorial-20220129/
 ```
+CloudFrontのキャッシュが残っているのですぐには更新されません
+
+- [CloudFrontのキャッシュ削除](https://qiita.com/yamamoto_y/items/cddba970ba0785b98461)
+```
+# aws cloudfront create-invalidation --distribution-id XXXXXXXXXXXXXX --paths "/*"
+例：# aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
+```
+*distribution-id*は作成したCloudFrontのもの
 
 ## GitHub Actionsから実行する方法
 CI/CDパイプラインを構築したいため、基本的にはGitHub Actionsからデプロイを実行することを想定しています。

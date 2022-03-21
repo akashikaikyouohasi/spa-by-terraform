@@ -12,6 +12,7 @@ typesctiptとwebpack
 npm install --save-dev webpack@5.50.0 webpack-cli@4.7.2 typescript@4.3.5 ts-loader@9.2.5 serve@12.0.0
 npm install react@17.0.2 react-dom@17.0.2 styled-components@5.3.0
 npm install -D @types/react@17.0.17 @types/react-dom@17.0.9 @types/styled-components@5.1.12
+npm install @auth0/auth0-react
 ```
 
 ts-loaderは、webpackでモジュールをバンドルするときに、TypeScriptで記述されたファイルを事前にJavascriptに変換するために必要なパッケージ

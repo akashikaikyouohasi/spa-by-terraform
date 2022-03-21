@@ -40,6 +40,11 @@ variable "dynamodb" {
   }
 }
 
+### 変数内で繰り返し使用する文字列 ###
+locals {
+  api_domain_name = "testapi.build-automation.de"
+}
+
 ### API Gatewayの設定 ###
 variable "api_gateway" {
   default = {
@@ -47,5 +52,20 @@ variable "api_gateway" {
     "api_domain_name" = "testapi.build-automation.de"
     # API Gateway用のドメインの証明書のARN（アマゾンリソースネーム）
     "api_domain_name_acm_arn" = "arn:aws:acm:us-east-1:206863353204:certificate/728f6af2-7c61-43b3-aefe-a50a8fae8f4f"
+  }
+}
+
+### Lambda authorizerの設定
+
+variable "lambda_authorizer" {
+  default = {
+    # Lambdaの関数名
+    "function_name" = "SPAforLambdaAuthorizer"
+    # 
+    audience = "https://testapi.build-automation.de"
+    # 
+    jwks_uri = "https://dev-mv5giriq.jp.auth0.com/.well-known/jwks.json"
+    # 
+    token_issuer = "https://dev-mv5giriq.jp.auth0.com/"
   }
 }

@@ -89,11 +89,35 @@ ANYメソッドを選択し、*クライアント*と書いてある箇所の上
 ## API Gatewayでカスタムドメインのアクセス確認
 以下のようにアクセスすると、同じテストデータが返ってくる
 
+```
 例：https://testapi.build-automation.de/dynamodb?id=1001
+
+crulでも可
+# curl https://testapi.build-automation.de/dynamodb?id=1001
+```
 
 ### 実行結果
 以下が表示される（返ってくる）。
 ```
 {"id": "1001", "test_id": "TerraformBySPA"}
 ```
+
+## API GatewayでAuth0の認証を入れた後のアクセス確認
+以下のようにアクセスすると、{"message":"Unauthorized"}と返ってくる。
+
+```
+# curl https://testapi.build-automation.de/dynamodb?id=1001
+{"message":"Unauthorized"}
+```
+
+Auth0による認証をしないとAPIが叩けないので、ブラウザではなく*crul*コマンドで確認します。
+
+Auth0のAPIのページで、*Test*タブの*Response*の箇所のaccess_tokeを確認してください。
+それを利用して、以下のように*curl*すると結果が返ってきます。
+
+```
+# curl --request GET --url https://testapi.build-automation.de/dynamodb?id=1001 --header 'authorization: Bearer access_tokenの内容}'
+{"id": "1001", "test_id": "TerraformBySPA"}
+```
+
 
