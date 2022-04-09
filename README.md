@@ -74,7 +74,9 @@ LambdaやSPAのソースを更新したい場合は手動でデプロイして�
 # aws cloudfront create-invalidation --distribution-id XXXXXXXXXXXXXX --paths "/*"
 例：# aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
 ```
-*distribution-id*は作成したCloudFrontのもの
+*distribution-id*は作成したCloudFrontのものです。
+
+少し時間がかかります。状況は、CloudFrontの画面の*キャッシュ削除*タブで確認できます。
 
 ## GitHub Actionsから実行する方法
 CI/CDパイプラインを構築したいため、基本的にはGitHub Actionsからデプロイを実行することを想定しています。
