@@ -12,6 +12,7 @@
     - 使い方、デプロイ方法
 - test_tool: AWSリソースなどのテスト方法ドキュメントと、テスト用のツール
 - react: SPAのフロントエンドを作るReactのソース。*origin_contents*ディレクトリにビルドしたものを出力します。
+- lambda: Lambdaにアップロードするソースコード
 
 ### draw.ioの図について
 SVGファイルなので、Draw.ioで読み込んで編集が可能です
@@ -20,13 +21,18 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 ## 機能
 - オリジンコンテンツ用のS3バケットにHTMLだけのindex.htmlを配置して、CloudFront経由でカスタムドメインで配布
 - API GatewayでREST API受け、Lambdaを呼び出してDynamoDBのデータを表示
+- 配布したコンテンツからAPI GatewayにREST APIを呼び出してDynamoDBのデータを表示
+- API GatewayをCustom AuthorizerでAuth0の認証
+- セキュリティとして、WAFとShieldの設定
 
 ### 今後の追加機能
-- 配布したWEBサイトからAPI GatewayにREST APIを呼び出してDynamoDBのデータを表示
-- API GatewayをAuth0での認証し、Custom Authorizer
-- セキュリティとして、WAFとShieldの設定
 - 運用監視として、CloudWatchにメトリクス設定。主に課金に関わる箇所を見える化する
     - Lambdaのログ出力
+- GitHub ActionsでReactのビルドとデプロイ自動化
+- GitHub ActionsでLambdaのデプロイ自動化
+- プルリクのタイミングで、GitHub Actionsでコードフォーマット（*terraform fmt*など）して問題があればエラーとする
+- プルリクのタイミングで、*terraform plan*した結果を表示して問題ないか確認できるように
+- ReactにStorybookやChakraUIを導入して確認できるように
 
 #### 要改善点
 - Lambdaの呼び出すDynamoDBを環境変数化
