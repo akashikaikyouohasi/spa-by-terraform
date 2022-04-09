@@ -25,7 +25,7 @@ def lambda_handler(event, context):
         # CORSのために、GETメソッド実行を許可するドメイン名
         'headers': {
             "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": "https://testwww.build-automation.de",
+            "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "GET"
         },
         'statusCode': 200,

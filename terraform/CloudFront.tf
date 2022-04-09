@@ -46,6 +46,7 @@ data "aws_cloudfront_cache_policy" "managed_caching_optimized" {
 
 # -----------------------------------
 # CloudFrontの作成
+# ※Shield Standardは自動で有効になっている
 # -----------------------------------
 resource  "aws_cloudfront_distribution" "spa-www" {
 	# 必須パラメータ。Distributionの有効化
@@ -63,8 +64,6 @@ resource  "aws_cloudfront_distribution" "spa-www" {
 			origin_access_identity	= aws_cloudfront_origin_access_identity.oai.cloudfront_access_identity_path
 		}
 
-        # オリジンシールドを有効にする。後で設定する。
-        #origin_shield 
 	}
 
 	# デフォルトのキャッシュビヘイビア。キャッシュサーバの詳細設定
@@ -85,6 +84,9 @@ resource  "aws_cloudfront_distribution" "spa-www" {
 
     # 関数の関連付け
     #なし
+
+	# AWS WAF web ACL 
+	web_acl_id = aws_wafv2_web_acl.webacl_for_CloudFront.arn
 
 	# 代替ドメイン名(CNAME) - オプション
  	# build-automation.de　をドメインとして取得している
@@ -130,5 +132,5 @@ resource  "aws_cloudfront_distribution" "spa-www" {
 	is_ipv6_enabled	= true
 
     # CloudFront削除時、破棄されず無効にする。Terraform固有の機能。削除するのに時間がかかるから？
-    retain_on_delete = true
+    #retain_on_delete = true
 }

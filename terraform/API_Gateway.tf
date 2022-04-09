@@ -31,14 +31,15 @@ resource "aws_api_gateway_method" "api_gw_method" {
   resource_id = aws_api_gateway_resource.api_gw_resource.id
   # HTTPのメソッド：Lambdaプロキシ統合ではANYにするらしい
   http_method = "ANY"
+  
   # 認可方式
-  authorization = "NONE"
+  #authorization = "NONE"
 
   ## カスタムオーソライザー設定
   # 認可方式
-  #authorization = "CUSTOM"
+  authorization = "CUSTOM"
   # トークンオーソライザー
-  #authorizer_id = aws_api_gateway_authorizer.auth0_authorizer.id
+  authorizer_id = aws_api_gateway_authorizer.auth0_authorizer.id
 
 }
 
@@ -126,11 +127,17 @@ resource "aws_api_gateway_deployment" "deploy" {
     create_before_destroy = true
   }
 
+  # API Gatewayの変更時に再デプロイさせるためのハック
+  stage_description = "setting file hash = ${md5(file("API_Gateway.tf"))}"
+
   # 依存関係
   depends_on = [aws_api_gateway_integration.api_gw_integration]
 }
 
+# デプロイ
 resource "aws_api_gateway_stage" "deploy" {
+  # APIをデプロイして外部に公開します。
+  
   # 
   deployment_id = aws_api_gateway_deployment.deploy.id
   # REST API
