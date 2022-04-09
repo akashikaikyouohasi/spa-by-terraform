@@ -127,6 +127,9 @@ resource "aws_api_gateway_deployment" "deploy" {
     create_before_destroy = true
   }
 
+  # API Gatewayの変更時に再デプロイさせるためのハック
+  stage_description = "setting file hash = ${md5(file("API_Gateway.tf"))}"
+
   # 依存関係
   depends_on = [aws_api_gateway_integration.api_gw_integration]
 }
