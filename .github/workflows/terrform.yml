@@ -55,4 +55,29 @@ jobs:
         id: apply
         working-directory: ./terraform
         run: terraform apply -auto-approve
+      
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.1
+
+      - name: Install dependencies
+        id: init_node
+        working-directory: ./react
+        run: npm install
+
+      - name: Build react
+        id: build
+        working-directory: ./react
+        run: npm run build
+
+      - name: Deploy react
+        id: build
+        working-directory: ./origin_contents
+        run: aws s3 sync . s3://dev-react-tutorial-20220129/
+
+      - name: Delete CloudFront cache
+        id: aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
+
+
 

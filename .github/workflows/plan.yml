@@ -50,3 +50,18 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
 
+
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.13.1
+
+      - name: Install dependencies
+        id: init_node
+        working-directory: ./react
+        run: npm install
+
+      - name: Build react
+        id: build
+        working-directory: ./react
+        run: npm run build
