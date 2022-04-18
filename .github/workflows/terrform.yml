@@ -72,7 +72,7 @@ jobs:
         run: npm run build
 
       - name: Deploy react
-        id: build
+        id: deploy
         working-directory: ./origin_contents
         run: aws s3 sync . s3://dev-react-tutorial-20220129/
 
