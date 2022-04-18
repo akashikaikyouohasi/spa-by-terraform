@@ -77,7 +77,8 @@ jobs:
         run: aws s3 sync . s3://dev-react-tutorial-20220129/
 
       - name: Delete CloudFront cache
-        id: aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
+        id: delete_cache
+        run: aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
 
 
 
