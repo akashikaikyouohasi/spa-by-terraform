@@ -1,10 +1,9 @@
-name: terraform apply by OIDC
+name: terraform plan by OIDC
 
 on: 
   pull_request:
     branches:
       - main
-    types: [closed]
 
 permissions:
   id-token: write
@@ -51,11 +50,7 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
 
-      - name: Terraform Apply
-        id: apply
-        working-directory: ./terraform
-        run: terraform apply -auto-approve
-      
+
       - name: Install Node
         uses: actions/setup-node@v1
         with:
@@ -70,14 +65,3 @@ jobs:
         id: build
         working-directory: ./react
         run: npm run build
-
-      - name: Deploy react
-        id: build
-        working-directory: ./origin_contents
-        run: aws s3 sync . s3://dev-react-tutorial-20220129/
-
-      - name: Delete CloudFront cache
-        id: aws cloudfront create-invalidation --distribution-id E9RO44VHBK46Q --paths "/*"
-
-
-
