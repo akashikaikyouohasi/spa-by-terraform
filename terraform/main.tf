@@ -20,7 +20,7 @@ terraform {
 
 # 明示的にAWSプロバイダを定義（暗黙的に理解してくれる）
 provider "aws" {
-  profile = "default"
+  #profile = "default"
   region  = "ap-northeast-1"
 
   # 作成する全リソースに付与するタグ設定
