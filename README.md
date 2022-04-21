@@ -1,4 +1,6 @@
 # SPAをAWSに構築するレポジトリ
+実際の動きはTwitterに上げた[動画](https://twitter.com/anikinthos/status/1506281480942919682)参照
+
 ## 構成図
 ![](images/SPA.drawio.svg)
 
