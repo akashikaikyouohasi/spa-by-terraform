@@ -8,6 +8,10 @@ on:
 permissions:
   id-token: write
   contents: read # actions/checkout のために必要
+  pull-requests: write # PRにコメントを付けるため
+
+env:
+  TERRAFORM_DIRECTORY: ./terraform
 
 jobs:
   get-caller-identity:
@@ -30,38 +34,58 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        working-directory: ./terraform
-        run: terraform fmt -check
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
+        run: terraform fmt -check -recursive
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        working-directory: ./terraform
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform init
 
       - name: Terraform Validate
         id: validate
-        working-directory: ./terraform
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        working-directory: ./terraform
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform plan -no-color
         continue-on-error: true
 
-
-      - name: Install Node
-        uses: actions/setup-node@v1
+      - uses: actions/github-script@v6
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
-          node-version: 16.13.1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
+            #### Terraform Validation 🤖\`${{ steps.validate.outcome }}\`
+            <details><summary>Validation Output</summary>
 
-      - name: Install dependencies
-        id: init_node
-        working-directory: ./react
-        run: npm install
+            \`\`\`\n
+            ${{ steps.validate.outputs.stdout }}
+            \`\`\`
 
-      - name: Build react
-        id: build
-        working-directory: ./react
-        run: npm run build
+            </details>
+
+            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            
+            <details><summary>Show Plan</summary>
+            
+            \`\`\`\n
+            ${process.env.PLAN}
+            \`\`\`
+            
+            </details>
+            
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.TERRAFORM_DIRECTORY }}\`, Workflow: \`${{ github.workflow }}\`*`;
+              
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })

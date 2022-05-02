@@ -26,11 +26,11 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 - 配布したコンテンツからAPI GatewayにREST APIを呼び出してDynamoDBのデータを表示
 - API GatewayをCustom AuthorizerでAuth0の認証
 - セキュリティとして、WAFとShieldの設定
+- GitHub ActionsでReactのビルドとデプロイ自動化
 
 ### 今後の追加機能
 - 運用監視として、CloudWatchにメトリクス設定。主に課金に関わる箇所を見える化する
     - Lambdaのログ出力
-- GitHub ActionsでReactのビルドとデプロイ自動化
 - GitHub ActionsでLambdaのデプロイ自動化
 - プルリクのタイミングで、GitHub Actionsでコードフォーマット（*terraform fmt*など）して問題があればエラーとする
 - プルリクのタイミングで、*terraform plan*した結果を表示して問題ないか確認できるように
