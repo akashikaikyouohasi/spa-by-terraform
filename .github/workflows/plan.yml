@@ -9,6 +9,9 @@ permissions:
   id-token: write
   contents: read # actions/checkout のために必要
 
+env:
+  TERRAFORM_DIRECTORY: ./terraform
+
 jobs:
   get-caller-identity:
     name: OIDC test
@@ -30,23 +33,23 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        working-directory: ./terraform
-        run: terraform fmt -check
+        working-directory: ${{ TERRAFORM_DIRECTORY }}
+        run: terraform fmt -check -recursive
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        working-directory: ./terraform
+        working-directory: ${{ TERRAFORM_DIRECTORY }}
         run: terraform init
 
       - name: Terraform Validate
         id: validate
-        working-directory: ./terraform
+        working-directory: ${{ TERRAFORM_DIRECTORY }}
         run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        working-directory: ./terraform
+        working-directory: ${{ TERRAFORM_DIRECTORY }}
         run: terraform plan -no-color
         continue-on-error: true
 
