@@ -8,7 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read # actions/checkout のために必要
-  actions: write # PRにコメントを付けるため
+  pull-requests: write # PRにコメントを付けるため
 
 env:
   TERRAFORM_DIRECTORY: ./terraform
