@@ -33,23 +33,23 @@ jobs:
 
       - name: Terraform fmt
         id: fmt
-        working-directory: ${{ TERRAFORM_DIRECTORY }}
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform fmt -check -recursive
         continue-on-error: true
 
       - name: Terraform Init
         id: init
-        working-directory: ${{ TERRAFORM_DIRECTORY }}
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform init
 
       - name: Terraform Validate
         id: validate
-        working-directory: ${{ TERRAFORM_DIRECTORY }}
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform validate -no-color
 
       - name: Terraform Plan
         id: plan
-        working-directory: ${{ TERRAFORM_DIRECTORY }}
+        working-directory: ${{ env.TERRAFORM_DIRECTORY }}
         run: terraform plan -no-color
         continue-on-error: true
 
@@ -80,7 +80,7 @@ jobs:
             
             </details>
             
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ TERRAFORM_DIRECTORY }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.TERRAFORM_DIRECTORY }}\`, Workflow: \`${{ github.workflow }}\`*`;
               
             github.rest.issues.createComment({
               issue_number: context.issue.number,
