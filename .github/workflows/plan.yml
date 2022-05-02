@@ -8,6 +8,7 @@ on:
 permissions:
   id-token: write
   contents: read # actions/checkout のために必要
+  actions: write # PRにコメントを付けるため
 
 env:
   TERRAFORM_DIRECTORY: ./terraform
@@ -75,7 +76,7 @@ jobs:
             <details><summary>Show Plan</summary>
             
             \`\`\`\n
-            ${process.env.PLAN}
+            ${{process.env.PLAN}}
             \`\`\`
             
             </details>
