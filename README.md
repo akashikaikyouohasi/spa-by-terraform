@@ -27,13 +27,13 @@ SVGファイルなので、Draw.ioで読み込んで編集が可能です
 - API GatewayをCustom AuthorizerでAuth0の認証
 - セキュリティとして、WAFとShieldの設定
 - GitHub ActionsでReactのビルドとデプロイ自動化
+- プルリクのタイミングで、GitHub Actionsでコードフォーマット（*terraform fmt*など）して問題があればエラーとする
+- プルリクのタイミングで、*terraform plan*した結果を表示して問題ないか確認できるように
 
 ### 今後の追加機能
 - 運用監視として、CloudWatchにメトリクス設定。主に課金に関わる箇所を見える化する
     - Lambdaのログ出力
 - GitHub ActionsでLambdaのデプロイ自動化
-- プルリクのタイミングで、GitHub Actionsでコードフォーマット（*terraform fmt*など）して問題があればエラーとする
-- プルリクのタイミングで、*terraform plan*した結果を表示して問題ないか確認できるように
 - ReactにStorybookやChakraUIを導入して確認できるように
 
 #### 要改善点
@@ -112,7 +112,15 @@ Terraformの状態管理をS3で行うため、Terraform用のS3バケットを�
 
 ### GitHub Actionsの実行タイミング
 #### 確認
-Pull Requestを作成したタイミングで`terraform plan`したいなぁ（予定）
+Pull Requestを作成したタイミングで`terraform plan`して、結果を表示します。
+結果は*github-actions*の*bot*でコメントとして出してくれます。
+内容は以下の通り
+- terraform formatをしたかどうか
+- terraform initが問題なかったかどうか
+- terraform validateが問題なかったかどうか
+  - validateの詳細な結果
+- terraform planの詳細な結果
+- PRのユーザー情報など
 
 #### 実行
 Pull RequestをMergeしたタイミングで`terraform apply`してます。
