@@ -45,7 +45,7 @@ jobs:
       - name: Terraform Validate
         id: validate
         working-directory: ${{ TERRAFORM_DIRECTORY }}
-        run: terraform validate -no-color
+        run: terraform validate -no-color -recursive
 
       - name: Terraform Plan
         id: plan
