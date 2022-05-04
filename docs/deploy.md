@@ -2,10 +2,25 @@
 デプロイなどに必要な手順を記載する。
 
 ## Lambda
+### DynamoDB操作
 現状はpythonのファイルのままデプロイ可能。
 
+### Auth0authorizer
+Auth0のAuthorizerはビルドが必要
+```
+$ cd lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master
+$ npm install
+$ npm run bundle
+```
+
 ## フロント
-現状はHTMLファイルだけなので、そのままデプロイ可能。
+Reactを使用しているため、ビルドが必要。
+```
+$ cd react
+$ npm install
+$ npm run build
+```
+**origin_contents**ディレクトリにビルドしたものが出力されます。
 
 ## GitHubの使い方
 ### gitコマンドでの一連の流れ

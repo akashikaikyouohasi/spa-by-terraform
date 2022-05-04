@@ -50,6 +50,7 @@ $ terraform plan
 $ terraform apply
 
 $ cd ../react
+$ npm install
 $ npm run build
 $ cd ../lambda/Auth0_authorizer/jwt-rsa-aws-custom-authorizer-master
 $ npm install
