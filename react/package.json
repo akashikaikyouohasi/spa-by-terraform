@@ -6,15 +6,26 @@
   "scripts": {
     "dev": "webpack -w",
     "build": "webpack",
-    "serve": "serve ../origin_contents -p 3000"
+    "serve": "serve ../origin_contents -p 3000",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@storybook/addon-actions": "^6.4.22",
+    "@storybook/addon-essentials": "^6.4.22",
+    "@storybook/addon-interactions": "^6.4.22",
+    "@storybook/addon-links": "^6.4.22",
+    "@storybook/react": "^6.4.22",
+    "@storybook/testing-library": "^0.0.11",
     "@types/react": "^17.0.17",
     "@types/react-dom": "^17.0.9",
     "@types/styled-components": "^5.1.12",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
     "serve": "^12.0.0",
     "ts-loader": "^9.2.5",
     "typescript": "^4.3.5",
