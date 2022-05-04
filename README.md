@@ -59,6 +59,17 @@ $ npm run bundle
 
 やりたいのであれば、`test_tool`ディレクトリを参照して、テストを試してみてください。
 
+### StoryBookの実行
+**React**には**StoryBook**をインストールしています。
+実行方法は以下の通り。
+
+```
+$ npm run storybook
+⇒ポート6006にアクセス
+```
+
+StoryBookのインストールのために、[html-webpack-pluginを個別にローカルインストール](https://github.com/storybookjs/storybook/issues/13332)しています
+
 ### ローカルで更新したLabmda/origin_contentsをデプロイする方法
 0から構築したタイミングではlambdaの関数とSPAの*index.html*はアップロードしてくれますが、後から更新して**terraform apply**してもコードは更新してくれません。
 
